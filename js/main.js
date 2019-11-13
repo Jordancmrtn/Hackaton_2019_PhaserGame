@@ -1,10 +1,7 @@
-var titlescene = new TitleScene()
-
-//* Game scene */
 var config = {
     type: Phaser.AUTO,
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 750,
+    height: 650,
     physics: {
         default: 'arcade',
         arcade: {
@@ -13,7 +10,7 @@ var config = {
         }
     },
     scene: [
-        TitleScene, Level_1
+        TitleScene, Level_1, Instructions
     ]
 };
 var game = new Phaser.Game(config);

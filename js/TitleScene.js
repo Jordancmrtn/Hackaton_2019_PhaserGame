@@ -5,23 +5,34 @@ class TitleScene extends Phaser.Scene {
     });
   }
   preload() {
-    this.load.image('cimetiere', '../Assets/Map/BG-debut.png');
-    this.load.image('background_img','../Assets/Map/Graveyard/png/BG.png');
-    this.load.image('button', '../Assets/button/play1.png');
-    this.load.image('logo', '../Assets/logo.png')
+    this.load.image('background_img','../Assets/Jordan/BG-solo-jordan.png');
     this.load.audio('music', '../Assets/Music/Musique_fond_video.mp3');
-
   }
   create() {
-    this.add.image(window.innerWidth/2, window.innerHeight/2, 'background_img').setDisplaySize(window.innerWidth,window.innerHeight);
-    this.add.image(window.innerWidth/2, window.innerHeight/2, 'cimetiere').setDisplaySize(window.innerWidth,window.innerHeight);
-    this.add.image(window.innerWidth/2 - 100, window.innerHeight/2 - 200, 'logo').setScale(0.2)
-    let play = this.add.image(window.innerWidth / 2, 620, 'button').setScale(2);
+    this.add.image(375, 325, 'background_img');
+    let play = this.add.text(298, 450, '< PLAY >', 
+      { fontFamily: 'Verdana',
+        fontSize: 30 + 'px',
+        color: 'white',
+      }).setScrollFactor(0);
+
     play.setInteractive({ useHandCursor: true });
     play.on('pointerdown', () => {
-      this.scene.switch('level1');
+      this.scene.start('level1');
       music.stop();
     });
+
+    let instruction = this.add.text(265, 500, '< INSTRUCTIONS >', 
+      { fontFamily: 'Verdana',
+        fontSize: 20 + 'px',
+        color: 'white',
+      }).setScrollFactor(0);
+    
+    instruction.setInteractive({ useHandCursor: true });
+    instruction.on('pointerdown', () => {
+      this.scene.switch('instructions');
+    });
+
 
     music = this.sound.add('music');
     music.play();
